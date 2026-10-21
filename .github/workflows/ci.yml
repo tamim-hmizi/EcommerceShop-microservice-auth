@@ -35,7 +35,7 @@ jobs:
         shell: bash
       - name: Report test failures
         if: failure()
-        run: grep -E "not ok|error:|Error|ECONN|Timeout" test.log | head -25 | sed 's/^/::error::/'
+        run: head -40 test.log | sed 's/^/::error::/'
         env:
           MONGO_URI: mongodb://127.0.0.1:27017
       - name: Syntax check
