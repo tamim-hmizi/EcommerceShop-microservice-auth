@@ -12,7 +12,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "AGPL-3.0-only",
+  "license": "Apache-2.0",
   "type": "module",
   "bugs": {
     "url": "https://github.com/tamim-hmizi/EcommerceShop-microservice-auth/issues"
