@@ -31,11 +31,7 @@ jobs:
       - run: npm ci
       - run: npm audit --audit-level=low
       - name: Test
-        run: npm test 2>&1 | tee test.log; exit ${PIPESTATUS[0]}
-        shell: bash
-      - name: Report test failures
-        if: failure()
-        run: head -40 test.log | sed 's/^/::error::/'
+        run: npm test
         env:
           MONGO_URI: mongodb://127.0.0.1:27017
       - name: Syntax check

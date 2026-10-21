@@ -4,12 +4,13 @@ import request from 'supertest';
 import app from '../src/app.js';
 import { bearer, useDatabase } from './helpers.js';
 
-useDatabase();
 
 const base = '/api/auth';
 const alice = { name: 'Alice', email: 'alice@example.com', password: 'correct-horse-1' };
 
 describe('auth service', () => {
+  useDatabase();
+
   it('registers a user and never returns the password', async () => {
     const res = await request(app).post(`${base}/register`).send(alice).expect(201);
     assert.equal(res.body.email, alice.email);
