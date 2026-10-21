@@ -4,7 +4,8 @@
   "description": "Ecommerce Shop microservice for auth .",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "test": "node --test --test-concurrency=1"
   },
   "repository": {
     "type": "git",
@@ -28,5 +29,8 @@
   },
   "engines": {
     "node": ">=22"
+  },
+  "devDependencies": {
+    "supertest": "^7.3.1"
   }
 }
