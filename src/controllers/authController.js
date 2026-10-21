@@ -3,7 +3,10 @@ import generateToken from '../utils/generateToken.js';
 
 const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
-  const userExists = await User.findOne({ email });
+  if (typeof email !== 'string' || typeof password !== 'string') {
+    return res.status(400).json({ message: 'Invalid user data' });
+  }
+  const userExists = await User.findOne({ email: { $eq: email } });
 
   if (userExists) {
     return res.status(400).json({ message: 'User already exists' });
@@ -25,7 +28,10 @@ const registerUser = async (req, res) => {
 
 const authUser = async (req, res) => {
   const { email, password } = req.body;
-  const user = await User.findOne({ email });
+  if (typeof email !== 'string' || typeof password !== 'string') {
+    return res.status(401).json({ message: 'Invalid email or password' });
+  }
+  const user = await User.findOne({ email: { $eq: email } });
 
   if (user && (await user.matchPassword(password))) {
     res.json({
